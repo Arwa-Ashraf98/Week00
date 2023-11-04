@@ -61,4 +61,9 @@ dependencies {
     // Annotation processor
     // kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
+
+    // koin
+    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "org.koin:koin-androidx-viewmodel:3.2.0"
+    implementation "org.koin:koin-androidx-scope:3.2.0"
 }
