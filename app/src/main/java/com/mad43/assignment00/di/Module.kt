@@ -3,6 +3,7 @@ package com.mad43.assignment00.di
 import com.mad43.assignment00.data.datasource.LocalDataSource
 import com.mad43.assignment00.data.repo.Repo
 import com.mad43.assignment00.domain.interactors.GetMobileTypeUseCase
+import com.mad43.assignment00.domain.repo.IRepo
 import com.mad43.assignment00.presentation.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,15 +14,16 @@ val appModule = module {
         LocalDataSource()
     }
 
-    single { Dispatchers.Default }
+    factory { Dispatchers.Default }
 
-    single { Repo(localDataSource = get(), dispatcher = get()) }
+    single<IRepo> { Repo(localDataSource = get(), dispatcher = get()) }
 
-    single { GetMobileTypeUseCase(repo = get()) }
+    factory { GetMobileTypeUseCase(repo = get()) }
 }
 
 val viewModelModule = module {
+
     viewModel {
-        MainViewModel(useCase = get())
+        MainViewModel(useCase = get() as GetMobileTypeUseCase)
     }
 }
